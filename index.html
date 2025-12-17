@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cogs — Launching Soon</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <main class="container">
+      <h1>Cogs Web Development and Hosting</h1>
+      <p class="tagline">We're launching soon — stay tuned!</p>
+
+      <section id="countdown" class="countdown" aria-live="polite" role="status">
+        <div class="time">
+          <span id="days">0</span>
+          <small>Days</small>
+        </div>
+        <div class="time">
+          <span id="hours">0</span>
+          <small>Hours</small>
+        </div>
+        <div class="time">
+          <span id="minutes">0</span>
+          <small>Minutes</small>
+        </div>
+        <div class="time">
+          <span id="seconds">0</span>
+          <small>Seconds</small>
+        </div>
+      </section>
+
+      <p id="launch-message" class="launch-message hidden">We have launched! Visit <a href="#">our site</a>.</p>
+
+      <form id="notify-form" class="notify-form" aria-label="Notify me when launched">
+        <label for="email">Get notified:</label>
+        <input id="email" type="email" name="email" placeholder="you@example.com" required>
+        <button type="submit">Notify Me</button>
+        <p id="notify-status" class="notify-status" role="status" aria-live="polite"></p>
+      </form>
+    </main>
+
+    <script src="js/index.js"></script>
+  </body>
+</html>
