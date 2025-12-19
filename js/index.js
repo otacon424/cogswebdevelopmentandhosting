@@ -51,4 +51,11 @@
 		$status.textContent = 'Thanks! We will notify you when we launch.';
 		$email.value = '';
 	});
+
+	/*function to send email using smtpjs
+	function sendEmail() {
+		Email.send(){
+			Host: "smtp.gmail.com",
+			Username: "rsaiyan4444@gmail.com"
+		*/
 })();
