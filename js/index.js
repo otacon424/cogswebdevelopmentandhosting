@@ -1,7 +1,7 @@
 // Countdown script for launch page
 (function(){
 	// Set your launch date here (ISO format). Update as needed.
-	const launchDate = new Date('2026-02-01T00:00:00Z');
+	const launchDate = new Date('2026-06-13T00:00:00Z');
 
 	const $days = document.getElementById('days');
 	const $hours = document.getElementById('hours');
