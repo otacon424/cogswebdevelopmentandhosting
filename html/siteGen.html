@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Orbis — Web Development & Hosting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #0A0F1E;
+    --navy2:  #0F172A;
+    --cyan:   #00D4FF;
+    --purple: #6C3BFF;
+    --white:  #F0F4FF;
+    --slate:  #8892B0;
+    --card-bg:#111827;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 5%;
+    background: rgba(10,15,30,0.7);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.5rem;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .logo span { color: var(--cyan); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--slate); font-size: 0.875rem; font-weight: 500;
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--cyan); color: var(--navy);
+    padding: 0.55rem 1.4rem; border-radius: 6px;
+    font-size: 0.875rem; font-weight: 600;
+    text-decoration: none; transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative; min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 8rem 5% 5rem;
+    overflow: hidden;
+  }
+  #mesh-canvas {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--cyan);
+    border: 1px solid rgba(0,212,255,0.3);
+    padding: 0.35rem 1rem; border-radius: 100px;
+    margin-bottom: 1.75rem;
+    position: relative; z-index: 1;
+  }
+  .hero-headline {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    font-weight: 800; line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 900px;
+    position: relative; z-index: 1;
+  }
+  .hero-headline .accent { color: var(--cyan); }
+  .hero-sub {
+    margin-top: 1.5rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--slate); max-width: 540px; line-height: 1.7;
+    position: relative; z-index: 1;
+  }
+  .hero-actions {
+    margin-top: 2.5rem; display: flex; gap: 1rem;
+    flex-wrap: wrap; justify-content: center;
+    position: relative; z-index: 1;
+  }
+  .btn-primary {
+    background: var(--cyan); color: var(--navy);
+    padding: 0.8rem 2rem; border-radius: 8px;
+    font-weight: 600; font-size: 0.95rem;
+    text-decoration: none; transition: transform 0.2s, opacity 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+  .btn-ghost {
+    border: 1px solid var(--border); color: var(--white);
+    padding: 0.8rem 2rem; border-radius: 8px;
+    font-weight: 500; font-size: 0.95rem;
+    text-decoration: none; transition: border-color 0.2s, transform 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--cyan); transform: translateY(-2px); }
+
+  .hero-stats {
+    margin-top: 4rem; display: flex; gap: 3rem;
+    flex-wrap: wrap; justify-content: center;
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 800;
+    color: var(--white);
+  }
+  .stat-num span { color: var(--cyan); }
+  .stat-label { font-size: 0.8rem; color: var(--slate); margin-top: 0.2rem; letter-spacing: 0.05em; }
+
+  /* ── SERVICES ── */
+  #services {
+    padding: 7rem 5%;
+    background: var(--navy2);
+  }
+  .section-eyebrow {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--cyan);
+    margin-bottom: 1rem;
+  }
+  .section-headline {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: 800; letter-spacing: -0.02em;
+    max-width: 560px; line-height: 1.15;
+  }
+  .section-sub {
+    color: var(--slate); margin-top: 1rem;
+    font-size: 1rem; line-height: 1.7; max-width: 480px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .service-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem;
+    transition: border-color 0.25s, transform 0.25s;
+    cursor: default;
+  }
+  .service-card:hover {
+    border-color: rgba(0,212,255,0.4);
+    transform: translateY(-4px);
+  }
+  .service-icon {
+    width: 48px; height: 48px;
+    background: rgba(0,212,255,0.1);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.4rem;
+  }
+  .service-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+  .service-card p { font-size: 0.9rem; color: var(--slate); line-height: 1.65; }
+
+  /* ── HOW IT WORKS ── */
+  #how {
+    padding: 7rem 5%;
+    background: var(--navy);
+  }
+  .how-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .how-steps { display: flex; flex-direction: column; gap: 2rem; margin-top: 2.5rem; }
+  .how-step { display: flex; gap: 1.25rem; align-items: flex-start; }
+  .step-dot {
+    flex-shrink: 0;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(108,59,255,0.15);
+    border: 1.5px solid rgba(108,59,255,0.5);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem; font-weight: 700; color: #a78bfa;
+    margin-top: 2px;
+  }
+  .how-step h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem;
+  }
+  .how-step p { font-size: 0.875rem; color: var(--slate); line-height: 1.6; }
+
+  .how-visual {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .how-visual::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(108,59,255,0.25), transparent 70%);
+    pointer-events: none;
+  }
+  .terminal-bar {
+    display: flex; gap: 6px; margin-bottom: 1.25rem;
+  }
+  .t-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .t-dot.red { background: #FF5F57; }
+  .t-dot.yellow { background: #FEBC2E; }
+  .t-dot.green { background: #28C840; }
+  .terminal-line {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem; margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+  .t-prompt { color: var(--cyan); }
+  .t-cmd { color: var(--white); }
+  .t-out { color: var(--slate); }
+  .t-success { color: #34d399; }
+  .t-blink { display: inline-block; animation: blink 1s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ── PRICING ── */
+  #pricing {
+    padding: 7rem 5%;
+    background: var(--navy2);
+    text-align: center;
+  }
+  #pricing .section-headline,
+  #pricing .section-sub { max-width: 600px; margin-left: auto; margin-right: auto; }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+    max-width: 1100px;
+    margin-left: auto; margin-right: auto;
+  }
+  .pricing-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.25rem 2rem;
+    text-align: left;
+    position: relative;
+    transition: transform 0.25s, border-color 0.25s;
+  }
+  .pricing-card:hover { transform: translateY(-4px); border-color: rgba(0,212,255,0.3); }
+  .pricing-card.featured {
+    border-color: var(--cyan);
+    background: linear-gradient(145deg, #0d1a2e, #0f1f38);
+  }
+  .pricing-badge {
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+    background: var(--cyan); color: var(--navy);
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 1rem; border-radius: 100px;
+    white-space: nowrap;
+  }
+  .pricing-tier {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--slate);
+    margin-bottom: 1rem;
+  }
+  .pricing-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.8rem; font-weight: 800;
+    line-height: 1; margin-bottom: 0.25rem;
+  }
+  .pricing-price sup { font-size: 1.2rem; vertical-align: super; }
+  .pricing-price sub { font-size: 0.9rem; color: var(--slate); font-weight: 400; }
+  .pricing-desc { font-size: 0.875rem; color: var(--slate); margin-bottom: 1.75rem; line-height: 1.5; }
+  .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+  .pricing-features li {
+    font-size: 0.875rem; color: var(--slate);
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .pricing-features li::before {
+    content: '✓'; color: var(--cyan);
+    font-weight: 700; font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+  .pricing-features li.muted { color: #4a5568; }
+  .pricing-features li.muted::before { color: #4a5568; }
+  .btn-plan {
+    display: block; text-align: center;
+    padding: 0.75rem; border-radius: 8px;
+    font-weight: 600; font-size: 0.875rem;
+    text-decoration: none; transition: transform 0.2s, opacity 0.2s;
+  }
+  .btn-plan.primary { background: var(--cyan); color: var(--navy); }
+  .btn-plan.outline { border: 1px solid var(--border); color: var(--white); }
+  .btn-plan:hover { transform: translateY(-2px); opacity: 0.9; }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials {
+    padding: 7rem 5%;
+    background: var(--navy);
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .testimonial-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem;
+  }
+  .t-stars { color: #FBBF24; font-size: 0.85rem; margin-bottom: 1rem; }
+  .t-quote { font-size: 0.925rem; line-height: 1.7; color: #c9d1e8; margin-bottom: 1.5rem; }
+  .t-author { display: flex; align-items: center; gap: 0.75rem; }
+  .t-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem;
+    color: var(--navy); flex-shrink: 0;
+  }
+  .t-name { font-weight: 600; font-size: 0.875rem; }
+  .t-role { font-size: 0.78rem; color: var(--slate); }
+
+  /* ── CTA ── */
+  #cta {
+    padding: 7rem 5%;
+    background: var(--navy2);
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  #cta::before {
+    content: '';
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 700px; height: 400px;
+    background: radial-gradient(ellipse, rgba(0,212,255,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #cta .section-headline { max-width: 640px; margin: 0 auto; position: relative; }
+  #cta .section-sub { max-width: 480px; margin: 1rem auto 0; text-align: center; position: relative; }
+  #cta .hero-actions { position: relative; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 3rem 5% 2rem;
+    border-top: 1px solid var(--border);
+    background: var(--navy);
+  }
+  .footer-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-copy { font-size: 0.8rem; color: var(--slate); }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a { font-size: 0.8rem; color: var(--slate); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .how-inner { grid-template-columns: 1fr; }
+    .hero-stats { gap: 2rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #mesh-canvas { display: none; }
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Orb<span>is</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#testimonials">Clients</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Get Started</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="mesh-canvas"></canvas>
+  <div class="hero-eyebrow">Web Development & Managed Hosting</div>
+  <h1 class="hero-headline">
+    Your site, built fast.<br>
+    <span class="accent">Kept online, always.</span>
+  </h1>
+  <p class="hero-sub">
+    We design, build, and host websites that perform. From a first launch to a scaled platform — Orbis handles everything so you can focus on your business.
+  </p>
+  <div class="hero-actions">
+    <a href="#pricing" class="btn-primary">See Plans</a>
+    <a href="#how" class="btn-ghost">How it works</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">99.9<span>%</span></div>
+      <div class="stat-label">Uptime SLA</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2<span>x</span></div>
+      <div class="stat-label">Faster than industry avg</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">340<span>+</span></div>
+      <div class="stat-label">Sites launched</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">24<span>/7</span></div>
+      <div class="stat-label">Support coverage</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-eyebrow">What We Build</div>
+  <h2 class="section-headline">Everything your web presence needs</h2>
+  <p class="section-sub">From concept to launch to ongoing care — we're the one team behind the whole stack.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">⚡</div>
+      <h3>Custom Web Development</h3>
+      <p>Hand-crafted websites and web apps built for speed and scalability. We write real code — no bloated page-builders.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎨</div>
+      <h3>UI / UX Design</h3>
+      <p>User-tested interfaces that guide visitors toward action. We design with conversion and accessibility in mind from day one.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚀</div>
+      <h3>Managed Hosting</h3>
+      <p>Edge-cached, DDoS-protected cloud infrastructure with zero-downtime deploys and nightly automated backups.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔒</div>
+      <h3>Security & SSL</h3>
+      <p>Free SSL, automatic renewals, WAF protection, and proactive vulnerability patching — security that runs in the background.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📈</div>
+      <h3>Performance Optimization</h3>
+      <p>Core Web Vitals audits, image delivery pipelines, and CDN tuning to keep your Lighthouse scores green.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛠️</div>
+      <h3>Ongoing Maintenance</h3>
+      <p>Monthly updates, uptime monitoring, and a real support team you can email. No ticket black holes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="how-inner">
+    <div>
+      <div class="section-eyebrow">The Process</div>
+      <h2 class="section-headline">From brief to live in under four weeks</h2>
+      <p class="section-sub">A clear, structured process so you always know where things stand.</p>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="step-dot">1</div>
+          <div>
+            <h4>Discovery call</h4>
+            <p>We learn about your goals, audience, and technical requirements. You get a fixed-scope proposal within 48 hours.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="step-dot">2</div>
+          <div>
+            <h4>Design & build</h4>
+            <p>We share a working prototype in week one. You review, we refine. No endless revision loops.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="step-dot">3</div>
+          <div>
+            <h4>Launch</h4>
+            <p>We migrate your domain, run final QA across devices, and push live — during a low-traffic window you choose.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="step-dot">4</div>
+          <div>
+            <h4>Managed hosting</h4>
+            <p>Your site stays on our infrastructure. We handle uptime, updates, and security so you never have to think about it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="how-visual">
+      <div class="terminal-bar">
+        <div class="t-dot red"></div>
+        <div class="t-dot yellow"></div>
+        <div class="t-dot green"></div>
+      </div>
+      <div class="terminal-line"><span class="t-prompt">orbis@deploy</span> <span class="t-cmd">~ $ git push origin main</span></div>
+      <div class="terminal-line t-out">Enumerating objects: 24, done.</div>
+      <div class="terminal-line t-out">Writing objects: 100% (24/24), 48.2 KiB.</div>
+      <div class="terminal-line t-out" style="margin-top:0.5rem;">▶ Build triggered...</div>
+      <div class="terminal-line t-out">  Installing dependencies... <span class="t-success">done</span></div>
+      <div class="terminal-line t-out">  Running tests... <span class="t-success">12 passed</span></div>
+      <div class="terminal-line t-out">  Optimizing assets... <span class="t-success">done</span></div>
+      <div class="terminal-line t-out">  Deploying to edge (14 regions)...</div>
+      <div class="terminal-line" style="margin-top:0.5rem;">
+        <span class="t-success">✓ Live at https://yoursite.com</span>
+      </div>
+      <div class="terminal-line t-out">  TTFB: 38ms &nbsp; Lighthouse: 99</div>
+      <div class="terminal-line" style="margin-top:0.5rem;"><span class="t-prompt">orbis@deploy</span> <span class="t-cmd">~ $ <span class="t-blink">█</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-eyebrow">Pricing</div>
+  <h2 class="section-headline">Transparent plans. No hidden fees.</h2>
+  <p class="section-sub">Every plan includes hosting, SSL, and real human support. Build once, host forever.</p>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-tier">Starter</div>
+      <div class="pricing-price"><sup>$</sup>49<sub>/mo</sub></div>
+      <div class="pricing-desc">For small businesses needing a reliable home on the web.</div>
+      <ul class="pricing-features">
+        <li>Up to 10-page website</li>
+        <li>Managed cloud hosting</li>
+        <li>Free SSL certificate</li>
+        <li>Nightly backups</li>
+        <li>Email support (48hr response)</li>
+        <li class="muted">Custom web app development</li>
+        <li class="muted">Priority support</li>
+      </ul>
+      <a href="#cta" class="btn-plan outline">Get started</a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Most Popular</div>
+      <div class="pricing-tier">Growth</div>
+      <div class="pricing-price"><sup>$</sup>149<sub>/mo</sub></div>
+      <div class="pricing-desc">For growing teams who need more speed, power, and support.</div>
+      <ul class="pricing-features">
+        <li>Unlimited pages</li>
+        <li>High-performance hosting + CDN</li>
+        <li>Free SSL + WAF security</li>
+        <li>Daily backups & 1-click restore</li>
+        <li>Priority support (4hr response)</li>
+        <li>Monthly performance reports</li>
+        <li class="muted">Custom web app development</li>
+      </ul>
+      <a href="#cta" class="btn-plan primary">Get started</a>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-tier">Scale</div>
+      <div class="pricing-price"><sup>$</sup>399<sub>/mo</sub></div>
+      <div class="pricing-desc">For businesses that need custom software and dedicated care.</div>
+      <ul class="pricing-features">
+        <li>Custom web application development</li>
+        <li>Dedicated cloud infrastructure</li>
+        <li>Advanced security suite</li>
+        <li>Real-time backups</li>
+        <li>Slack / phone support (1hr response)</li>
+        <li>Monthly dev hours included</li>
+        <li>Dedicated account manager</li>
+      </ul>
+      <a href="#cta" class="btn-plan outline">Talk to us</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-eyebrow">Client Stories</div>
+  <h2 class="section-headline">Trusted by businesses who can't afford downtime</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">Orbis rebuilt our e-commerce site and our page load time dropped from 6 seconds to under a second. Conversions went up 34% the following month. Worth every penny.</p>
+      <div class="t-author">
+        <div class="t-avatar" style="background:#00D4FF;">SM</div>
+        <div>
+          <div class="t-name">Sarah M.</div>
+          <div class="t-role">CEO, Cove Skincare</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★</div>
+      <p class="t-quote">We've had three agencies before Orbis. None of them felt like a real partner. These guys know what they're building and they're actually reachable when something goes wrong.</p>
+      <div class="t-author">
+        <div class="t-avatar" style="background:#6C3BFF;">JR</div>
+        <div>
+          <div class="t-name">James R.</div>
+          <div class="t-role">Founder, Ridgeline Consulting</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">Launched in 18 days, which I didn't think was possible. The design was exactly what I had in my head but couldn't articulate. The site handles our traffic spikes without a hiccup.</p>
+      <div class="t-author">
+        <div class="t-avatar" style="background:#34d399;">AK</div>
+        <div>
+          <div class="t-name">Aisha K.</div>
+          <div class="t-role">Director, Fennel Market</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="section-eyebrow">Let's Build</div>
+  <h2 class="section-headline">Ready to launch something worth visiting?</h2>
+  <p class="section-sub">Book a free 30-minute discovery call. No pressure, no obligation — just a conversation about what you're building.</p>
+  <div class="hero-actions">
+    <a href="mailto:hello@orbis.dev" class="btn-primary">Book a free call</a>
+    <a href="#pricing" class="btn-ghost">View pricing</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="logo">Orb<span>is</span></a>
+    <p class="footer-copy">© 2026 Orbis Web Inc. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Status</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── MESH CANVAS ANIMATION ──
+const canvas = document.getElementById('mesh-canvas');
+const ctx = canvas.getContext('2d');
+
+let nodes = [], W, H;
+const NODE_COUNT = 55;
+const MAX_DIST = 160;
+const CYAN = '0,212,255';
+
+function resize() {
+  W = canvas.width = canvas.offsetWidth;
+  H = canvas.height = canvas.offsetHeight;
+}
+
+function initNodes() {
+  nodes = [];
+  for (let i = 0; i < NODE_COUNT; i++) {
+    nodes.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      r: Math.random() * 1.5 + 1
+    });
+  }
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+
+  // Draw edges
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const dx = nodes[i].x - nodes[j].x;
+      const dy = nodes[i].y - nodes[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < MAX_DIST) {
+        const alpha = (1 - dist / MAX_DIST) * 0.25;
+        ctx.strokeStyle = `rgba(${CYAN},${alpha})`;
+        ctx.lineWidth = 0.8;
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(nodes[j].x, nodes[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+
+  // Draw nodes
+  for (const n of nodes) {
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${CYAN},0.5)`;
+    ctx.fill();
+
+    // Update
+    n.x += n.vx; n.y += n.vy;
+    if (n.x < 0 || n.x > W) n.vx *= -1;
+    if (n.y < 0 || n.y > H) n.vy *= -1;
+  }
+
+  requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize', () => { resize(); initNodes(); });
+resize(); initNodes(); draw();
+</script>
+</body>
+</html>
