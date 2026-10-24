@@ -3,51 +3,83 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cogs Web Development and Hosting</title>
+    <meta name="description" content="Cogs creates thoughtful websites and dependable hosting for businesses ready to grow online.">
+    <meta name="theme-color" content="#173b35">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <main class="container">
-      <h1>Cogs Web Development and Hosting</h1>
-      <p class="tagline">We're launching soon — stay tuned!</p>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Cogs home">
+        <span class="brand-mark" aria-hidden="true">C</span>
+        <span class="brand-name">COGS<span>WEB DEVELOPMENT + HOSTING</span></span>
+      </a>
+      <a class="header-link" href="mailto:ajones061392@yahoo.com">Get in touch <span aria-hidden="true">&#8599;</span></a>
+    </header>
 
-      <section id="countdown" class="countdown" aria-live="polite" role="status">
-        <div class="time">
-          <span id="days">0</span>
-          <small>Days</small>
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img class="hero-image" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=2200&amp;q=85" alt="A laptop displaying a website in a bright creative workspace">
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="eyebrow"><span></span> A new home for your business online</p>
+          <h1 id="hero-title">Good ideas<br>deserve a <em>great</em> website.</h1>
+          <p class="hero-copy">Cogs brings web development and hosting together, giving your next big idea a thoughtful place to grow.</p>
+          <a class="button button-light" href="mailto:ajones061392@yahoo.com">Start a conversation <span aria-hidden="true">&#8599;</span></a>
+          <p class="hero-note">Websites made with care. Hosting without the headache.</p>
         </div>
-        <div class="time">
-          <span id="hours">0</span>
-          <small>Hours</small>
+        <p class="hero-index" aria-hidden="true">01 / THE NEXT CHAPTER</p>
+      </section>
+
+      <section class="services" id="services" aria-labelledby="services-title">
+        <div class="section-intro">
+          <p class="eyebrow eyebrow-dark">WHAT COGS DOES</p>
+          <h2 id="services-title">Everything your website needs to get going.</h2>
         </div>
-        <div class="time">
-          <span id="minutes">0</span>
-          <small>Minutes</small>
-        </div>
-        <div class="time">
-          <span id="seconds">0</span>
-          <small>Seconds</small>
+        <div class="service-list">
+          <article class="service-item">
+            <span class="service-number">01</span>
+            <div>
+              <h3>Web development</h3>
+              <p>Clear, considered websites built around your business and the people you want to reach.</p>
+            </div>
+            <span class="service-arrow" aria-hidden="true">&#8599;</span>
+          </article>
+          <article class="service-item">
+            <span class="service-number">02</span>
+            <div>
+              <h3>Web hosting</h3>
+              <p>A dependable home for your site, with the essentials handled so you can focus on what you do best.</p>
+            </div>
+            <span class="service-arrow" aria-hidden="true">&#8599;</span>
+          </article>
+          <article class="service-item">
+            <span class="service-number">03</span>
+            <div>
+              <h3>Ongoing support</h3>
+              <p>Practical help to keep your online presence current as your ideas and business evolve.</p>
+            </div>
+            <span class="service-arrow" aria-hidden="true">&#8599;</span>
+          </article>
         </div>
       </section>
 
-      <p id="launch-message" class="launch-message hidden">We have launched! Visit <a href="#">our site</a>.</p>
-
-      <form id="notify-form" class="notify-form" aria-label="Notify me when launched">
-        <label for="email">Get notified:</label>
-        <input id="email" type="email" name="email" placeholder="you@example.com" required>
-        <button type="submit">Notify Me</button>
-        <p id="notify-status" class="notify-status" role="status" aria-live="polite"></p>
-      </form>
-      
-    <footer>
-      <p>Copyright © 2026 Cogs Web Development and Hosting. All rights reserved.</p>
-      <p><a href="mailto:ajones061392@yahoo.com" class="href">ajones061392@yahoo.com</a></p>
-    </footer>
-
+      <section class="contact" aria-labelledby="contact-title">
+        <p class="eyebrow">HAVE A PROJECT IN MIND?</p>
+        <div class="contact-row">
+          <h2 id="contact-title">Let's make it<br>real on the web.</h2>
+          <a class="button button-dark" href="mailto:ajones061392@yahoo.com">Tell us about it <span aria-hidden="true">&#8599;</span></a>
+        </div>
+      </section>
     </main>
 
-
-    <script src="js/index.js"></script>
+    <footer class="site-footer">
+      <a class="footer-brand" href="#top">COGS <span>WEB DEVELOPMENT + HOSTING</span></a>
+      <a href="mailto:ajones061392@yahoo.com">ajones061392@yahoo.com</a>
+      <p>&copy; 2026 Cogs Web Development and Hosting</p>
+    </footer>
   </body>
 </html>
